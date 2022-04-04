@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Service;
 use App\Visitor;
 use Illuminate\Http\Request;
 
@@ -16,6 +17,10 @@ class HomeController extends Controller
 
         Visitor::insert(['ip_address' => $userIP, 'visit_time' => $timeDate]);
 
-        return view('home');
+        // get all servicess
+        $services = Service::all();
+
+
+        return view('home', compact('services'));
     }
 }
